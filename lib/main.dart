@@ -8,8 +8,17 @@ import 'package:uasd_app/components/cards/text_card.dart';
 import 'package:uasd_app/components/others/selection_subjects_card_list.dart';
 import 'package:uasd_app/components/others/info_table.dart';
 import 'package:uasd_app/components/others/tag.dart';
+import 'package:uasd_app/models/event.dart';
+import 'package:uasd_app/models/new.dart';
+import 'package:uasd_app/models/user.dart';
+import 'package:uasd_app/models/video.dart';
 import 'package:uasd_app/screens/landing/main_screen.dart';
 import 'package:uasd_app/screens/principal_screen.dart';
+import 'package:uasd_app/services/academic_service.dart';
+import 'package:uasd_app/services/auth_service.dart';
+import 'package:uasd_app/services/content_service.dart';
+import 'package:uasd_app/services/request_service.dart';
+import 'package:uasd_app/services/token_service.dart';
 import 'package:uasd_app/utils/theme.dart';
 
 void main() => runApp(const MyApp());
@@ -31,7 +40,17 @@ class MyApp extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  
+  Future<void> ontap()async {
+
+    User? user = await AuthService.login("2022207", "2022");
+
+    
+    if(user != null){
+      TokenService().setToken(user.authToken);
+      
+      }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +64,7 @@ class HomeScreen extends StatelessWidget {
           children: [
           SolidButton(
             text: "Pago en Linea", 
-            onPressed: () {
-              Navigator.push(
-                context, // Context está asociado a MaterialApp
-                MaterialPageRoute(builder: (context) => const MainScreen()),
-              );
-            },
+            onPressed: ontap
           ),
           OutlineButton(
             text: "Agregar Entrega", 
