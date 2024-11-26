@@ -8,6 +8,7 @@ import 'package:uasd_app/components/cards/text_card.dart';
 import 'package:uasd_app/components/others/selection_subjects_card_list.dart';
 import 'package:uasd_app/components/others/info_table.dart';
 import 'package:uasd_app/components/others/tag.dart';
+import 'package:uasd_app/screens/landing/main_screen.dart';
 import 'package:uasd_app/screens/principal_screen.dart';
 import 'package:uasd_app/utils/theme.dart';
 
@@ -47,7 +48,7 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context, // Context está asociado a MaterialApp
-                MaterialPageRoute(builder: (context) => const PrincipalScreen()),
+                MaterialPageRoute(builder: (context) => const MainScreen()),
               );
             },
           ),
