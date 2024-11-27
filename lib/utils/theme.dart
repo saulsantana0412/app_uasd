@@ -26,7 +26,8 @@ ThemeData appTheme = ThemeData(
 
   appBarTheme: AppBarTheme(
     backgroundColor: AppColors.darkblue,
-    titleTextStyle: AppTextStyles.titleMedium.copyWith(color: AppColors.white)
+    titleTextStyle: AppTextStyles.titleMedium.copyWith(color: AppColors.white),
+    foregroundColor: AppColors.white
   ),
 
   buttonTheme: const ButtonThemeData(
