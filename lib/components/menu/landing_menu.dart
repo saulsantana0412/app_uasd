@@ -43,8 +43,11 @@ class LandingMenu extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text("Home"),
-            onTap: ()=>Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => MainScreen(),)),
+            onTap: (){
+              Navigator.pop(context);
+
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MainScreen(),));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.home_outlined),
