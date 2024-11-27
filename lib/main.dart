@@ -5,6 +5,7 @@ import 'package:uasd_app/components/buttons/outline_button.dart';
 import 'package:uasd_app/components/buttons/solid_button.dart';
 import 'package:uasd_app/components/cards/subject_selection_info_card.dart';
 import 'package:uasd_app/components/cards/text_card.dart';
+import 'package:uasd_app/components/menu/landing_menu.dart';
 import 'package:uasd_app/components/others/selection_subjects_card_list.dart';
 import 'package:uasd_app/components/others/info_table.dart';
 import 'package:uasd_app/components/others/tag.dart';
