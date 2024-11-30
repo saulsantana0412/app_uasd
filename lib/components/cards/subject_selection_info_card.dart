@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/components/buttons/icon_button_small.dart';
+import 'package:uasd_app/components/buttons/custom_icon_button.dart';
+import 'package:uasd_app/models/subject.dart';
+import 'package:uasd_app/screens/student_portal/map_screen.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
 class SubjectSelectionInfoCard extends StatelessWidget {
 
-  final String section;
-  final String schedule;
-  final String places;
-  final bool state;
-  final VoidCallback onPressed;
+  final Subject subject;
 
-  const SubjectSelectionInfoCard({super.key, required this.section, required this.schedule, required this.places, required this.state, required this.onPressed});
+  const SubjectSelectionInfoCard({super.key, required this.subject });
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +16,10 @@ class SubjectSelectionInfoCard extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(top: 4),
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
-        color: AppColors.ligthGray
+        color: AppColors.ligthBlue
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,27 +27,36 @@ class SubjectSelectionInfoCard extends StatelessWidget {
         children: [
           Column(
             children: [
-              Text("Seccion", style: textTheme.labelMedium,),
-              Text(section, style: textTheme.bodyMedium,)
+              Text("Codigo", style: textTheme.labelMedium,),
+              Text(subject.codigo, style: textTheme.bodyMedium,)
             ],
           ),
           Column(
             children: [
               Text("Horario", style: textTheme.labelMedium,),
-              Text(schedule, style: textTheme.bodyMedium,)
+              Text(subject.horario??"", style: textTheme.bodyMedium,)
             ],
           ),
           Column(
             children: [
-              Text("Cupos", style: textTheme.labelMedium,),
-              Text(places, style: textTheme.bodyMedium,)
+              Text("Aula", style: textTheme.labelMedium,),
+              Text(subject.aula, style: textTheme.bodyMedium,)
             ],
           ),
-          IconButtonSmall(
-            icon: Icons.check_box_outline_blank,
-            icon2: Icons.check_box_outlined, 
-            state: state,
-            onPressed: onPressed)
+          CustomIconButton(
+            icon: Icons.map_outlined, 
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MapScreen(
+                  coordenates: subject.ubicacion
+                  );
+              },));
+            })
+          // CustomIconButton(
+          //   icon: Icons.check_box_outline_blank,
+          //   icon2: Icons.check_box_outlined, 
+          //   state: state,
+          //   onPressed: onPressed)
         ],
       ),
     );

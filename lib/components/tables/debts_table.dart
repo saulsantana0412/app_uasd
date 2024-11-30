@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:uasd_app/models/debt.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
-class InfoTable extends StatelessWidget {
-  final List<String> columns;
-  final List<List<String>> rows;
+class DebtsTable extends StatelessWidget {
+  final List<Debt> debts;
 
-  InfoTable({required this.columns, required this.rows});
+  const DebtsTable({super.key, required this.debts});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,18 @@ class InfoTable extends StatelessWidget {
             color: AppColors.white
           )
         ),
-        columns: columns.map(
-          (column) => DataColumn(
-            label: Text(column, style: textTheme.labelLarge,)
-          )).toList(),
-        rows: rows.map((row) {
+        columns: const [
+          DataColumn(
+            label: Text("Monto")),
+          DataColumn(
+            label: Text("Estado")),
+        ],
+        rows: debts.map((debt) {
           return DataRow(
-            cells: row.map((cell) => DataCell(Text(cell))).toList(),
+            cells: [
+              DataCell(Text(debt.monto.toString())),
+              DataCell(Text(debt.pagada? "Pagado": "Pendiente")),
+            ],
           );
         }).toList(),
       ),

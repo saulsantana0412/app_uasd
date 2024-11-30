@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class IconButtonSmall extends StatefulWidget {
+class CustomIconButton extends StatefulWidget {
 
   final IconData icon;
   final VoidCallback onPressed;
   final IconData? icon2;
   final bool? state;
 
-  const IconButtonSmall({super.key, required this.icon, required this.onPressed, this.icon2, this.state});
+  const CustomIconButton({super.key, required this.icon, required this.onPressed, this.icon2, this.state});
 
   @override
-  State<IconButtonSmall> createState() => _IconButtonSmallState();
+  State<CustomIconButton> createState() => _CustomIconButtonState();
 }
 
-class _IconButtonSmallState extends State<IconButtonSmall> {
+class _CustomIconButtonState extends State<CustomIconButton> {
 
   late IconData _icon;
   bool? _state;

@@ -22,11 +22,10 @@ class RequestService {
           "Authorization": "Bearer $token",
         });
 
-        if (response.statusCode == 200){
-          final Map<String, dynamic> responseData = jsonDecode(response.body);
-          final List<dynamic> newsJson = responseData['data'];
-          print(newsJson.map((json) => Request.fromJson(json)).toList().first.descripcion);
-          return newsJson.map((json) => Request.fromJson(json)).toList();
+      if (response.statusCode == 200){
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        final List<dynamic> newsJson = responseData['data'];
+        return newsJson.map((json) => Request.fromJson(json)).toList();
       }
     } catch (e) {
       print('Excepción: $e');
@@ -52,7 +51,6 @@ class RequestService {
         if (response.statusCode == 200){
           final Map<String, dynamic> responseData = jsonDecode(response.body);
           final List<dynamic> newsJson = responseData['data'];
-          print(newsJson.map((json) => RequestType.fromJson(json)).toList().first.codigo);
           return newsJson.map((json) => RequestType.fromJson(json)).toList();
       }
     } catch (e) {
@@ -89,7 +87,6 @@ class RequestService {
           final responseData = jsonDecode(response.body);
 
           if (responseData['success'] == true){
-            print(responseData["message"]);
             return true;
           } else {
             return false;

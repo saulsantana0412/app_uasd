@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/utils/app_colors.dart';
+import 'package:uasd_app/components/buttons/solid_button.dart';
+import 'package:uasd_app/screens/login/login_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -13,6 +14,11 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("UASD"),
+        actions: [
+          SolidButton(text: "Iniciar Sesion", onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+          })
+        ],
       ),
       body: SingleChildScrollView (
         padding: EdgeInsets.all(20),

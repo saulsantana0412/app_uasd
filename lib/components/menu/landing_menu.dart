@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/main.dart';
 import 'package:uasd_app/screens/landing/main_screen.dart';
+import 'package:uasd_app/screens/student_portal/home_screen.dart';
 
 class LandingMenu extends StatelessWidget {
   const LandingMenu({super.key});

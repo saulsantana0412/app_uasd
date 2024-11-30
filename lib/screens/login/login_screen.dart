@@ -4,6 +4,7 @@ import 'package:uasd_app/components/inputs/text_input.dart';
 import 'package:uasd_app/models/user.dart';
 import 'package:uasd_app/screens/student_portal/home_screen.dart';
 import 'package:uasd_app/services/auth_service.dart';
+import 'package:uasd_app/services/token_service.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -39,16 +40,16 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: AppColors.white,
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(30),
           child: Form(
             key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset("lib/assets/logo.png", width: 150),
+                Image.network("https://www.fundapec.edu.do/wp-content/uploads/2023/06/logo_uasd.png", width: double.infinity,),
                 const SizedBox(height: 30),
-                Text("Inicio de Sesión", style: textTheme.headlineLarge,),
+                Text("Inicio de Sesión", style: textTheme.titleLarge,),
                 const SizedBox(height: 30),
                 TextInput(
                   label: "Usuario", 
@@ -77,6 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (user != null) {
                           _usernameCtrl.clear();
                           _passwordCtrl.clear();
+                          TokenService.setToken(user.authToken);
+                          
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => HomeScreen()),

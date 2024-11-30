@@ -32,17 +32,17 @@ class TextInput extends StatefulWidget {
 
 class _TextInputState extends State<TextInput> {
 
-    bool _obscureText = true;
+  bool _obscureText = true;
+  final FocusNode _focusNode = FocusNode(); // Controla el foco del campo
 
-    @override
-    void initState() {
-      super.initState();
+  @override
+  void initState() {
+    super.initState();
 
-      if(widget.obscureText != null){
-        _obscureText = false;
-      }
-      
+    if(widget.obscureText != null){
+      _obscureText = true;
     }
+  }
 
   String? _validateField(String? value){
     if(value == null || value.isEmpty){
@@ -50,11 +50,17 @@ class _TextInputState extends State<TextInput> {
     }
     return null;
   }
+
+  @override
+  void dispose() {
+    _focusNode.dispose(); // Libera recursos
+    super.dispose();
+  }
     
   @override
   Widget build(BuildContext context) {
-        TextTheme textTheme = Theme.of(context).textTheme;
 
+    TextTheme textTheme = Theme.of(context).textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,10 +69,12 @@ class _TextInputState extends State<TextInput> {
           style: textTheme.bodyLarge,
           enabled: widget.enable,
           controller: widget.controller,
+          focusNode: _focusNode,
           validator: widget.validator ?? _validateField,
           minLines: widget.minLines,
           maxLines: widget.maxLines,
           obscureText: widget.obscureText == null ? false : _obscureText,
+          onTapOutside: (_){_focusNode.unfocus();},
           decoration: InputDecoration(
             prefixIcon: widget.icon == null ? null : Icon(widget.icon),
             suffixIcon: widget.obscureText == null ? null 
@@ -79,7 +87,6 @@ class _TextInputState extends State<TextInput> {
                 });
               },
             ),
-            // Icon( widget.obscureText? Icons.visibility : Icons.visibility_off),
             border: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: AppColors.darkGray
@@ -91,7 +98,6 @@ class _TextInputState extends State<TextInput> {
                 width: 2
               ),
             ),
-            // errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.yellow)),
             label: Text(widget.label),
             floatingLabelStyle: textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
             labelStyle: textTheme.labelLarge,

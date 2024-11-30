@@ -5,8 +5,9 @@ class CustomTextButton extends StatelessWidget {
   final String text;
   final IconData? icon;
   final VoidCallback onPressed;
+  final Color? color;
 
-  const CustomTextButton({super.key, required this.onPressed, required this.text, this.icon});
+  const CustomTextButton({super.key, required this.onPressed, required this.text, this.icon, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,6 @@ class CustomTextButton extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Container(
-      margin: EdgeInsets.only(left: 20),
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: InkWell(
         onTap: onPressed,
@@ -23,9 +23,9 @@ class CustomTextButton extends StatelessWidget {
           children: [
             Text(
               text,
-              style: textTheme.labelMedium,
+              style: textTheme.labelMedium?.copyWith(color: color),
             ),
-            if(icon != null) Icon(icon)
+            if(icon != null) Icon(icon, color: color,)
           ],
         ),
       ),

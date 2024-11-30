@@ -3,9 +3,10 @@ import 'package:uasd_app/utils/app_colors.dart';
 
 class SolidButton extends StatelessWidget {
   final String text; 
+  final Color? backgroundColor;
   final VoidCallback onPressed;
 
-  const SolidButton({super.key, required this.text, required this.onPressed});
+  const SolidButton({super.key, required this.text, required this.onPressed, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class SolidButton extends StatelessWidget {
             textStyle: theme.textTheme.labelMedium,
             foregroundColor: AppColors.white,
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            backgroundColor: AppColors.darkblue,
+            backgroundColor: backgroundColor??AppColors.darkblue,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30)
             )
