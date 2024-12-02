@@ -6,7 +6,7 @@ class Request {
     String estado;
     DateTime fechaSolicitud;
     DateTime? fechaRespuesta;
-    String respuesta;
+    String? respuesta;
 
     Request({
         required this.id,
@@ -16,7 +16,7 @@ class Request {
         required this.estado,
         required this.fechaSolicitud,
         this.fechaRespuesta,
-        required this.respuesta,
+        this.respuesta,
     });
 
     factory Request.fromJson(Map<String, dynamic> json) => Request(

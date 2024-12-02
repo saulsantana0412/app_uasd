@@ -102,6 +102,7 @@ class AuthService {
           final responseData = jsonDecode(response.body);
 
           if (responseData['success'] == true){
+            print("OK OK OK OK OK ");
             return true;
           } else {
             return false;
@@ -137,6 +138,7 @@ class AuthService {
           final responseData = jsonDecode(response.body);
 
           if (responseData['success'] == true){
+            print("OKOKOKOKOK OK");
             return true;
           } else {
             return false;

@@ -16,9 +16,9 @@ class InfoTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: DataTable(
         decoration: const BoxDecoration(
-          color: AppColors.ligthGray
+          color: AppColors.ligthBlue
         ),
-        headingRowColor: WidgetStatePropertyAll(AppColors.gray),
+        headingRowColor: WidgetStatePropertyAll(AppColors.blue),
         headingRowHeight: 40,
         dividerThickness: 0,
         dataTextStyle: textTheme.bodyMedium,

@@ -2,7 +2,7 @@ class Subject {
     String codigo;
     String nombre;
     String aula;
-    String? horarios;
+    String? horario;
     String ubicacion;
     bool? confirmada;
 
@@ -10,7 +10,7 @@ class Subject {
         required this.codigo,
         required this.nombre,
         required this.aula,
-        this.horarios,
+        this.horario,
         required this.ubicacion,
         this.confirmada,
     });
@@ -19,7 +19,7 @@ class Subject {
         codigo: json["codigo"],
         nombre: json["nombre"],
         aula: json["aula"],
-        horarios: json["horarios"],
+        horario: json["horario"],
         ubicacion: json["ubicacion"],
         confirmada: json["confirmada"],
     );
@@ -28,7 +28,7 @@ class Subject {
         "codigo": codigo,
         "nombre": nombre,
         "aula": aula,
-        "horarios": horarios,
+        "horario": horario,
         "ubicacion": ubicacion,
         "confirmada": confirmada,
     };

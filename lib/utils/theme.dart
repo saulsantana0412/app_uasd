@@ -27,7 +27,8 @@ ThemeData appTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: AppColors.darkblue,
     titleTextStyle: AppTextStyles.titleMedium.copyWith(color: AppColors.white),
-    foregroundColor: AppColors.white
+    foregroundColor: AppColors.white,
+    centerTitle: true
   ),
 
   buttonTheme: const ButtonThemeData(
@@ -35,5 +36,5 @@ ThemeData appTheme = ThemeData(
     textTheme: ButtonTextTheme.primary,
   ),
 
-  dividerColor: AppColors.ligthGray, // Color de separadores
+  dividerColor: AppColors.ligthBlue, // Color de separadores
 );

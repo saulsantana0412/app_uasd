@@ -2,7 +2,7 @@
 class Debt {
     int id;
     int usuarioId;
-    int monto;
+    double monto;
     bool pagada;
     DateTime fechaActualizacion;
 
