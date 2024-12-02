@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/screens/student_portal/about_us_screen.dart';
 import 'package:uasd_app/screens/student_portal/class_schedules_screen.dart';
 import 'package:uasd_app/screens/student_portal/debts_screen.dart';
@@ -12,75 +11,71 @@ import 'package:uasd_app/screens/student_portal/videos_screen.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+
+  final String? name;
+
+  const HomeScreen({super.key, this.name});
 
   @override
   Widget build(BuildContext context) {
     
     TextTheme textTheme = Theme.of(context).textTheme;
     
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        title: const Text("Portal de Estudiante"),
-        // backgroundColor: Colors.transparent,
-        // titleTextStyle: textTheme.titleLarge,
-        // foregroundColor: AppColors.darkGray,
-      ),
-      drawer: const StudentPortalMenu(currentScreen: 'HomeScreen',),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Bienvenido Saul!", style: textTheme.titleLarge!.copyWith(fontSize: 30),),
-              Text("Nos alegramos de tenerte de vuelta 😊", style: textTheme.bodyLarge),
-              SizedBox(height: 20),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OptionContainer(icon: Icons.newspaper_outlined, title: "Noticias", color: AppColors.ligthBlue, destination: NewsScreen(),),
-                  SizedBox(width: 40,),
-                  OptionContainer(icon: Icons.calendar_month, title: "Horarios", color: AppColors.blue, destination: ClassSchedulesScreen(),)
-                ],
-              ),
-              const SizedBox(height: 30,),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OptionContainer(icon: Icons.check_box_outlined, title: "Preselección", color: AppColors.blue, destination: SubjectPreselectionScreen(),),
-                  SizedBox(width: 30,),
-                  OptionContainer(icon: Icons.credit_card, title: "Pagos", color: AppColors.white, destination: DebtsScreen(),)
-                ],
-              ),
-              const SizedBox(height: 30,),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OptionContainer(icon: Icons.mail_outlined, title: "Solicitudes", color: AppColors.white, destination: RequestsScreen(),),
-                  SizedBox(width: 30,),
-                  OptionContainer(icon: Icons.checklist, title: "Mis Tareas", color: AppColors.ligthBlue, destination: TasksScreen(),)
-                ],
-              ),
-              const SizedBox(height: 30,),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OptionContainer(icon: Icons.event, title: "Eventos", color: AppColors.blue, destination: EventsScreen(),),
-                  SizedBox(width: 30,),
-                  OptionContainer(icon: Icons.video_library_outlined, title: "Videos", color: AppColors.white, destination: VideosScreen(),)
-                ],
-              ),
-              const SizedBox(height: 30,),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OptionContainer(icon: Icons.info_outline_rounded, title: "Acerca de", color: AppColors.ligthBlue, destination: AboutUsScreen(),),
-                ],
-              )
-            ],
-          ),
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("¡Bienvenido, $name!", style: textTheme.titleLarge!.copyWith(fontSize: 30),),
+            Text("Nos alegramos de tenerte de vuelta 😊", style: textTheme.bodyLarge),
+            SizedBox(height: 20),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OptionContainer(icon: Icons.newspaper_outlined, title: "Noticias", color: AppColors.blue, destination: NewsScreen(),),
+                SizedBox(width: 40,),
+                OptionContainer(icon: Icons.calendar_month, title: "Horarios", color: AppColors.blue, destination: ClassSchedulesScreen(),)
+              ],
+            ),
+            const SizedBox(height: 30,),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OptionContainer(icon: Icons.check_box_outlined, title: "Preselección", color: AppColors.ligthBlue, destination: SubjectPreselectionScreen(),),
+                SizedBox(width: 30,),
+                OptionContainer(icon: Icons.credit_card, title: "Pagos", color: AppColors.ligthBlue, destination: DebtsScreen(),)
+              ],
+            ),
+            const SizedBox(height: 30,),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OptionContainer(icon: Icons.mail_outlined, title: "Solicitudes", color: AppColors.white, destination: RequestsScreen(),),
+                SizedBox(width: 30,),
+                OptionContainer(icon: Icons.checklist, title: "Mis Tareas", color: AppColors.white, destination: TasksScreen(),)
+              ],
+            ),
+            const SizedBox(height: 30,),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OptionContainer(icon: Icons.event, title: "Eventos", color: AppColors.ligthBlue, destination: EventsScreen(),),
+                SizedBox(width: 30,),
+                OptionContainer(icon: Icons.video_library_outlined, title: "Videos", color: AppColors.ligthBlue, destination: VideosScreen(),)
+              ],
+            ),
+            const SizedBox(height: 30,),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OptionContainer(icon: Icons.info_outline_rounded, title: "Acerca de", color: AppColors.blue, destination: AboutUsScreen(),),
+              ],
+            )
+          ],
         ),
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/components/cards/video_card.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/models/video.dart';
 import 'package:uasd_app/services/content_service.dart';
-import 'package:uasd_app/utils/methods/youtube_player.dart';
+import 'package:uasd_app/utils/app_colors.dart';
+// import 'package:uasd_app/utils/methods/youtube_player.dart';
 
 class VideosScreen extends StatefulWidget {
   const VideosScreen({super.key});
@@ -18,7 +18,7 @@ class _VideosScreenState extends State<VideosScreen> {
 
   Future <void> fetchVideos() async{
     final data = await ContentService.fetchVideos();
-    if(data != null){
+    if(data != null && mounted){
       _videos = data;
       setState(() {
         
@@ -38,12 +38,10 @@ class _VideosScreenState extends State<VideosScreen> {
 
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Videos"),
-      ),
-      drawer: const StudentPortalMenu(currentScreen: 'VideosScreen',),
-      body: Container(
+    return Container(
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +64,6 @@ class _VideosScreenState extends State<VideosScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

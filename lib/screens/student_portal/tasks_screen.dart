@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:uasd_app/components/buttons/custom_text_button.dart';
 import 'package:uasd_app/components/buttons/custom_icon_button.dart';
 import 'package:uasd_app/components/cards/text_card.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/components/others/tag.dart';
 import 'package:uasd_app/models/task.dart';
 import 'package:uasd_app/services/academic_service.dart';
+import 'package:uasd_app/utils/app_colors.dart';
 
 class TasksScreen extends StatefulWidget {
 
@@ -21,7 +21,7 @@ class _TasksScreenState extends State<TasksScreen> {
 
   Future <void> fetchTasks() async{
     final data = await AcademicService.fetchTasks();
-    if(data != null){
+    if(data != null && mounted){
       _tasks = data;
       setState(() {
         
@@ -40,12 +40,10 @@ class _TasksScreenState extends State<TasksScreen> {
 
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Tareas"),
-      ),
-      drawer: const StudentPortalMenu(currentScreen: 'TasksScreen',),
-      body: Container(
+    return Container(
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +78,6 @@ class _TasksScreenState extends State<TasksScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

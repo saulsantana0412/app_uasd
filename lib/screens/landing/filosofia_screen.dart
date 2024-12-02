@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/utils/app_colors.dart';
 
 class FilosafiaScreen extends StatelessWidget {
   const FilosafiaScreen({super.key});
@@ -11,9 +10,10 @@ class FilosafiaScreen extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("UASD"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("UASD"),
+      // ),
+      // drawer: const LandingMenu(currentScreen: 'FilosafiaScreen',),
       body: SingleChildScrollView (
         padding: EdgeInsets.all(20),
         child: Column(

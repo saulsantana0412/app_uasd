@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
@@ -79,11 +81,16 @@ class _TextInputState extends State<TextInput> {
             prefixIcon: widget.icon == null ? null : Icon(widget.icon),
             suffixIcon: widget.obscureText == null ? null 
             : IconButton( 
-              icon: Icon( _obscureText ? Icons.visibility : Icons.visibility_off, ), 
+              icon: Icon( _obscureText ? Icons.visibility_off : Icons.visibility, ), 
               onPressed: () { 
                 _obscureText = !_obscureText;
                 setState(() {
                   
+                });
+                Timer(Duration(seconds: 1), (){
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
                 });
               },
             ),

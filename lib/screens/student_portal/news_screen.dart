@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/components/cards/news_card.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/models/new.dart';
 import 'package:uasd_app/services/content_service.dart';
+import 'package:uasd_app/utils/app_colors.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -17,7 +17,7 @@ class _NewsScreenState extends State<NewsScreen> {
 
   Future <void> fetchNews() async{
     final data = await ContentService.fetchNews();
-    if(data != null){
+    if(data != null && mounted){
       _news = data;
       setState(() {
         
@@ -37,17 +37,16 @@ class _NewsScreenState extends State<NewsScreen> {
 
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Noticias"),
-      ),
-      drawer: const StudentPortalMenu(currentScreen: 'NewsScreen',),
-      body: Container(
+    return Container(
         padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Noticias", style: textTheme.titleMedium,),
+            Text("Noticias de la UASD", style: textTheme.titleMedium,),
+            const SizedBox(height: 20,),
             Expanded(
               child: ListView.builder(
                 itemCount: _news.length,
@@ -69,7 +68,6 @@ class _NewsScreenState extends State<NewsScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

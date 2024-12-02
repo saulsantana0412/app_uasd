@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/components/buttons/solid_button.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/components/tables/request_table.dart';
 import 'package:uasd_app/models/request.dart';
 import 'package:uasd_app/models/request_type.dart';
 import 'package:uasd_app/components/others/new_request_modal.dart';
 import 'package:uasd_app/services/request_service.dart';
+import 'package:uasd_app/utils/app_colors.dart';
 
 class RequestsScreen extends StatefulWidget {
   const RequestsScreen({super.key});
@@ -21,7 +21,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
 
   Future <void> fetchRequest() async{
     final data = await RequestService.fetchRequests();
-    if(data != null){
+    if(data != null && mounted){
       setState(() {
       _requests = data;
       });
@@ -36,7 +36,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
 
   Future <void> fetchRequestTypes() async{
     final data = await RequestService.fetchRequestTypes();
-    if(data != null){
+    if(data != null && mounted){
       _requestsTypes = data;
       setState(() {
         
@@ -57,11 +57,11 @@ class _RequestsScreenState extends State<RequestsScreen> {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Solicitudes"),
-      ),
-      drawer: const StudentPortalMenu(currentScreen: 'RequestsScreen',),
+      backgroundColor: AppColors.backgroundColor,
       body: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,6 +74,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 update: updateView,
               )
             ),
+            const SizedBox(height: 60,)
           ],
         ),
       ),

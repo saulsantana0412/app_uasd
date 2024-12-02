@@ -21,7 +21,7 @@ class VideoCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-        color: AppColors.ligthBlue,
+        color: AppColors.white,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(

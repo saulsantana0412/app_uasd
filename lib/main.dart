@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      title: 'Material App',
+      title: 'UASD APP',
       theme: appTheme,
-      home: const MainScreen()
+      home: const MainLandingScreen()
     );
   }
 }

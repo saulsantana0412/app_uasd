@@ -20,34 +20,46 @@ class RequestTable extends StatelessWidget {
       itemBuilder: (context, index) {
         final request = requests[index];
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildRow("Tipo", Text(request.tipo, style: textTheme.bodyMedium,), textTheme),
-            middleBorder(),
-            _buildRow("Descripcion", Text(request.descripcion, style: textTheme.bodyMedium,), textTheme),
-            middleBorder(),
-            _buildRow("Estado", Text(request.estado, style: textTheme.bodyMedium,), textTheme),
-            middleBorder(),
-            _buildRow("Fecha Solicitud", Text(request.fechaSolicitud.toString().split(".")[0].split("T")[0], style: textTheme.bodyMedium,), textTheme),
-            middleBorder(),
-            _buildRow("Respondida", Text(request.respuesta == null ? "No" : "Sí", style: textTheme.bodyMedium,), textTheme),
-            middleBorder(),
-            _buildRow("Fecha Respuesta", Text(request.fechaRespuesta == null ? "-" : request.fechaRespuesta.toString().split(".")[0], style: textTheme.bodyMedium,), textTheme),
-            middleBorder(),
-            request.respuesta == null ?
-            _buildRow("Acciones", 
-            CustomTextButton(
-              onPressed: () async {
-                await RequestService.cancelRequest(request.id);
-                print(request.id);
-                update();
-                // print(request.id);
-              }, 
-              text: "Cancelar Solicitud  ", 
-              color: AppColors.red,), 
-              textTheme)
-            : const SizedBox(),
-            SizedBox(height: 20,)
-          ]
+            Text("Solicitud #${request.id}", style: textTheme.titleSmall,), 
+            const SizedBox(height: 5,),
+            Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+                child: Column(
+                  children: [
+                    _buildRow("Tipo", Text(request.tipo, style: textTheme.bodyMedium,), textTheme),
+                    middleBorder(),
+                    _buildRow("Descripcion", Text(request.descripcion, style: textTheme.bodyMedium,), textTheme),
+                    middleBorder(),
+                    _buildRow("Estado", Text(request.estado, style: textTheme.bodyMedium,), textTheme),
+                    middleBorder(),
+                    _buildRow("Fecha Solicitud", Text(request.fechaSolicitud.toString().split(".")[0].split("T")[0], style: textTheme.bodyMedium,), textTheme),
+                    middleBorder(),
+                    _buildRow("Respondida", Text(request.respuesta == null ? "No" : "Sí", style: textTheme.bodyMedium,), textTheme),
+                    middleBorder(),
+                    _buildRow("Fecha Respuesta", Text(request.fechaRespuesta == null ? "-" : request.fechaRespuesta.toString().split(".")[0], style: textTheme.bodyMedium,), textTheme),
+                    middleBorder(),
+                    request.respuesta == null ?
+                    _buildRow("Acciones", 
+                    CustomTextButton(
+                      onPressed: () async {
+                        await RequestService.cancelRequest(request.id);
+                        print(request.id);
+                        update();
+                        // print(request.id);
+                      }, 
+                      text: "Cancelar Solicitud  ", 
+                      color: AppColors.red,), 
+                      textTheme)
+                    : const SizedBox(),
+                  ]
+                ),
+              ),
+            ),
+          ],
         ); 
       },
     );
@@ -68,7 +80,7 @@ class RequestTable extends StatelessWidget {
               style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)
             ),
           ),
-          const SizedBox(width: 4,),
+          const SizedBox(width: 3,),
           Expanded(
             child: Container(
               color: AppColors.ligthBlue,
@@ -83,7 +95,7 @@ class RequestTable extends StatelessWidget {
 
   Widget middleBorder(){
     return const Divider(
-      height: 4,
+      height: 3,
       indent: 0, 
       endIndent: 0, 
       color: Colors.transparent, 

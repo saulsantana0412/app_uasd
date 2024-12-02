@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/components/buttons/solid_button.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/components/tables/debts_table.dart';
 import 'package:uasd_app/models/debt.dart';
 import 'package:uasd_app/services/debt_service.dart';
+import 'package:uasd_app/utils/app_colors.dart';
 import 'package:uasd_app/utils/methods/launch_url.dart';
 
 class DebtsScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _DebtsScreenState extends State<DebtsScreen> {
 
   Future <void> fetchDebts() async{
     final data = await DebtService.fetchDebts();
-    if(data != null){
+    if(data != null && mounted){
       _debts = data;
       setState(() {
         
@@ -39,11 +39,10 @@ class _DebtsScreenState extends State<DebtsScreen> {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pagos"),
-      ),
-      drawer: const StudentPortalMenu(currentScreen: "DebtsScreen",),
       body: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

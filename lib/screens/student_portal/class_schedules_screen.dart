@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/services/schedule_service.dart';
+import 'package:uasd_app/utils/app_colors.dart';
 
 class ClassSchedulesScreen extends StatefulWidget {
   const ClassSchedulesScreen({super.key});
@@ -28,17 +28,15 @@ class _ClassSchedulesScreenState extends State<ClassSchedulesScreen> {
 
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Horario"),
-      ),
-      drawer: const StudentPortalMenu(currentScreen: "ClassSchedulesScreen",),
-      body: Container(
+    return Container(
         padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Horarios", style: textTheme.headlineMedium,),
+            Text("Horarios", style: textTheme.titleMedium,),
             Expanded(
               child: ListView.builder(
                 itemCount: _schedule.length,
@@ -55,7 +53,6 @@ class _ClassSchedulesScreenState extends State<ClassSchedulesScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

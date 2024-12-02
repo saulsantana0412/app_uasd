@@ -52,11 +52,6 @@ class SubjectSelectionInfoCard extends StatelessWidget {
                   );
               },));
             })
-          // CustomIconButton(
-          //   icon: Icons.check_box_outline_blank,
-          //   icon2: Icons.check_box_outlined, 
-          //   state: state,
-          //   onPressed: onPressed)
         ],
       ),
     );

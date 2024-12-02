@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/components/buttons/custom_icon_button.dart';
 import 'package:uasd_app/components/cards/text_card.dart';
-import 'package:uasd_app/components/menu/student_portal_menu.dart';
 import 'package:uasd_app/screens/student_portal/map_screen.dart';
 import 'package:uasd_app/components/others/tag.dart';
 import 'package:uasd_app/models/event.dart';
 import 'package:uasd_app/services/content_service.dart';
+import 'package:uasd_app/utils/app_colors.dart';
 
 class EventsScreen extends StatefulWidget {
   const EventsScreen({super.key});
@@ -20,7 +20,7 @@ class _EventsScreenState extends State<EventsScreen> {
 
   Future <void> fetchEvents() async{
     final data = await ContentService.fetchEvents();
-    if(data != null){
+    if(data != null && mounted){
       _events = data;
       setState(() {
         
@@ -39,13 +39,11 @@ class _EventsScreenState extends State<EventsScreen> {
 
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Eventos"),
-      ),
-      drawer: const StudentPortalMenu(currentScreen: "EventsScreen",),
-      body: Container(
+    return Container(
         padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
+          color: AppColors.backgroundColor,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -81,7 +79,6 @@ class _EventsScreenState extends State<EventsScreen> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/utils/app_colors.dart';
+import 'package:flutter_svg/svg.dart';
 
 class FacultadesScreen extends StatelessWidget {
   const FacultadesScreen({super.key});
@@ -11,9 +11,10 @@ class FacultadesScreen extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("UASD"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("UASD"),
+      // ),
+      // drawer: const LandingMenu(currentScreen: 'FacultadesScreen',),
       body: SingleChildScrollView (
         padding: EdgeInsets.all(20),
         child: Column(
@@ -27,7 +28,7 @@ class FacultadesScreen extends StatelessWidget {
                style: textTheme.bodyMedium,
             ),
              SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-HUMANIDADES.svg',
                 width: 300,
                 height: 150,
@@ -38,7 +39,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ), 
             SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-CIENCIAS.svg',
                 width: 300,
                 height: 150,
@@ -49,7 +50,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ),
              SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-ECONOMIA.svg',
                 width: 300,
                 height: 150,
@@ -60,7 +61,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ), 
             SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-JURIDICA.svg',
                 width: 300,
                 height: 150,
@@ -71,7 +72,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ), 
             SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-INGENIERIA.svg',
                 width: 300,
                 height: 150,
@@ -82,7 +83,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ), 
             SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-SALUD.svg',
                 width: 300,
                 height: 150,
@@ -93,7 +94,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ), 
             SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-VETERINARIA.svg',
                 width: 300,
                 height: 150,
@@ -104,7 +105,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ), 
             SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-ARTES.svg',
                 width: 300,
                 height: 150,
@@ -115,7 +116,7 @@ class FacultadesScreen extends StatelessWidget {
               style: textTheme.titleSmall,
             ), 
             SizedBox(height: 20),
-             Image.network(
+             SvgPicture.network(
                 'https://uasd.edu.do/wp-content/uploads/2022/11/LOGO-EDUCACION.svg',
                 width: 300,
                 height: 150,
