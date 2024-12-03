@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Mensaje para usuario o contraseña incorrecta
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: const Row(
+                              content: Row(
                                 children: [
                                   Icon(Icons.error, color: Colors.white,),
                                   SizedBox(width: 10,),

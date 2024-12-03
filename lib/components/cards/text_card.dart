@@ -46,6 +46,7 @@ class TextCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(title, style: textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w500)),
+                    // ignore: prefer_const_constructors
                     if(subtitle != null) SizedBox(height: 5 ,),
                     if(subtitle != null) Text(subtitle!, style: textTheme.bodyMedium)
                   ],

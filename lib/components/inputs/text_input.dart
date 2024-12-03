@@ -16,7 +16,7 @@ class TextInput extends StatefulWidget {
   final bool enable;
 
 
-  const TextInput({
+  const TextInput({super.key, 
     required this.label,
     required this.controller,
     this.validator,
@@ -87,7 +87,7 @@ class _TextInputState extends State<TextInput> {
                 setState(() {
                   
                 });
-                Timer(Duration(seconds: 1), (){
+                Timer(const Duration(seconds: 1), (){
                   setState(() {
                     _obscureText = !_obscureText;
                   });

@@ -34,7 +34,6 @@ class AuthService {
         }
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 
@@ -60,14 +59,11 @@ class AuthService {
           if (responseData['success'] == true){
             return User.fromJson(responseData['data']);
           } else {
-            print("error");
             return null;
         }
       }else{
-        print(response.statusCode);
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 
@@ -100,16 +96,13 @@ class AuthService {
         if (response.statusCode == 200){
 
           final responseData = jsonDecode(response.body);
-
           if (responseData['success'] == true){
-            print("OK OK OK OK OK ");
             return true;
           } else {
             return false;
         }
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 
@@ -138,14 +131,12 @@ class AuthService {
           final responseData = jsonDecode(response.body);
 
           if (responseData['success'] == true){
-            print("OKOKOKOKOK OK");
             return true;
           } else {
             return false;
         }
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 

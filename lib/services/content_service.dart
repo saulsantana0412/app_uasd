@@ -29,7 +29,6 @@ class ContentService {
           return newsJson.map((json) => New.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;
@@ -55,7 +54,6 @@ class ContentService {
           return responseData.map((json) => Event.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;
@@ -81,7 +79,6 @@ class ContentService {
           return responseData.map((json) => Video.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;

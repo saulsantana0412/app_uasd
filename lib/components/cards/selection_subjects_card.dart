@@ -21,12 +21,17 @@ class SubjetsSelectionCard extends StatelessWidget {
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(10),
-          decoration: const BoxDecoration(
-            color: AppColors.blue,
-            borderRadius: BorderRadius.only(
+          decoration: BoxDecoration(
+            color: AppColors.ligthBlue,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10)
-            )
+            ),
+            boxShadow: [
+            BoxShadow(
+              color: AppColors.darkGray.withOpacity(.05),
+              blurRadius: 10
+            )]
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,10 +49,9 @@ class SubjetsSelectionCard extends StatelessWidget {
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(top: 4),
           padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(
-            color: AppColors.ligthBlue,
+            color: AppColors.white,
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)
@@ -66,7 +70,7 @@ class SubjetsSelectionCard extends StatelessWidget {
               Column(
                 children: [
                   Text("Horario", style: textTheme.labelMedium,),
-                  Text(subject.horario??"", style: textTheme.bodyMedium,)
+                  Text(subject.horario??"", style: textTheme.bodyMedium, softWrap: true,)
                 ],
               ),
               Column(

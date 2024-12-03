@@ -46,7 +46,7 @@ class _MapScreenState extends State<MapScreen> {
           ),
           markers: {
             Marker(
-              markerId: MarkerId("marker"),
+              markerId: const MarkerId("marker"),
               position: LatLng(_latitude, _longitude),
               onTap: () =>showDialog(
                 context: context, 
@@ -55,7 +55,7 @@ class _MapScreenState extends State<MapScreen> {
                   title: Text(widget.title??""),
                   content: Text(widget.description??""),
                   actions: [
-                    TextButton(onPressed: ()=> Navigator.pop(context), child: Text("Cerrar")
+                    TextButton(onPressed: ()=> Navigator.pop(context), child: const Text("Cerrar")
                     )
                 ],
               ),

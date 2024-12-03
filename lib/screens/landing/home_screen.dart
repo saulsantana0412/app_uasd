@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
       // ),
       // drawer: const LandingMenu(currentScreen: 'HomeScreen',),
       body: SingleChildScrollView (
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Text(
@@ -31,14 +31,14 @@ class HomeScreen extends StatelessWidget {
               "La Universidad de Santo Domingo fue creada mediante la Bula In Apostolatus Culmine, expedida el 28 de octubre de 1538 por el Papa Paulo III, la cual elevó a esa categoría el Estudio General que los dominicos regenteaban desde el 1518, en Santo Domingo, sede virreinal de la colonización y el más viejo establecimiento colonial del Nuevo Mundo.La Universidad de Alcalá de Henares fue su modelo y como tal fue porta-estandarte de las ideas renacentistas que surgían del mundo medieval, del que emergía la España de los días de la conquista.La naciente Universidad inició sus enseñanzas organizadas en cuatro Facultades: Medicina, Derecho, Teología y Artes, conforme a las normas establecidas en la época para las instituciones similares de la metrópoli.", 
               style: textTheme.bodyMedium,
             ),
-             SizedBox(height: 20),
+             const SizedBox(height: 20),
              Image.network(
                 'https://uasd.edu.do/wp-content/uploads/UASD-10-768x549.jpg',
                 width: 500,
                 height: 250,
                 fit: BoxFit.cover, // Ajusta cómo se muestra la imagen
               ), 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "Misión", 
               style: textTheme.titleMedium,
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
               "Su Misión es formar críticamente profesionales, investigadores y técnicos en las ciencias, las humanidades y las artes necesarias y eficientes para coadyuvar a las transformaciones que demanda el desarrollo nacional sostenible, así como difundir los ideales de la cultura de paz, progreso, justicia social, equidad de género y respeto a los derechos humanos, a fin de contribuir a la formación de una conciencia colectiva basada en valores.", 
               style: textTheme.bodyMedium,
             ),
-            SizedBox(height: 20), 
+            const SizedBox(height: 20), 
             Text(
               "Vision", 
               style: textTheme.titleMedium,

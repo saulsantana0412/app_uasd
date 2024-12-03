@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/components/buttons/custom_text_button.dart';
-import 'package:uasd_app/components/buttons/custom_icon_button.dart';
-import 'package:uasd_app/components/cards/text_card.dart';
-import 'package:uasd_app/components/others/tag.dart';
+import 'package:uasd_app/components/cards/task_card.dart';
+import 'package:uasd_app/components/others/custom_circular_progress.dart';
 import 'package:uasd_app/models/task.dart';
 import 'package:uasd_app/services/academic_service.dart';
 import 'package:uasd_app/utils/app_colors.dart';
@@ -18,13 +16,14 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
 
   List<Task> _tasks = [];
+  bool loading = true;
 
   Future <void> fetchTasks() async{
     final data = await AcademicService.fetchTasks();
     if(data != null && mounted){
       _tasks = data;
       setState(() {
-        
+        loading = false;
       });
     }
   }
@@ -48,7 +47,12 @@ class _TasksScreenState extends State<TasksScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Tareas", style: textTheme.headlineMedium,),
+            Text("Mis Tareas", style: textTheme.titleMedium,),
+            const SizedBox(height: 10,),
+            if(loading) const CustomCircularProgress(),
+            if (!loading && _tasks.isEmpty)
+            Text("Aun no tareas que mostrar.", style: Theme.of(context).textTheme.bodyMedium),
+            if (!loading && _tasks.isNotEmpty)
             Expanded(
               child: ListView.builder(
                 itemCount: _tasks.length,
@@ -56,20 +60,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextCard(
-                        title: _tasks[index].titulo,
-                        subtitle: _tasks[index].descripcion,
-                        tag1: Tag(text: _tasks[index].fechaVencimiento.toString().split(".")[0]),
-                        topIconButton: CustomIconButton(
-                          icon: Icons.check_box_outline_blank,
-                          icon2: Icons.check_box_outlined,
-                          state: _tasks[index].completada, 
-                          onPressed: (){}),
-                        bottomButton: CustomTextButton(
-                          text: _tasks[index].completada ? "Ver Entrega": "Agregar Entrega",
-                          onPressed: (){}, 
-                        ),
-                      ),
+                      TaskCard(task: _tasks[index]),
                       const SizedBox(height: 20,)
                     ],
                   );

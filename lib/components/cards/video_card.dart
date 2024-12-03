@@ -20,9 +20,14 @@ class VideoCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkGray.withOpacity(.05),
+            blurRadius: 10
+        )],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

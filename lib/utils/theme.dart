@@ -5,7 +5,7 @@ import 'package:uasd_app/utils/app_text_style.dart';
 
 ThemeData appTheme = ThemeData(
   primaryColor: AppColors.darkblue,
-  highlightColor: AppColors.yellow,
+  // highlightColor: AppColors.yellow,
   scaffoldBackgroundColor: AppColors.white,
   fontFamily: 'Roboto',
 

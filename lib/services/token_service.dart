@@ -3,7 +3,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TokenService {
-  static const _storage = const FlutterSecureStorage();
+  static const _storage = FlutterSecureStorage();
   static const _tokenKey = 'auth_token';
 
   // Método para establecer el token
@@ -25,8 +25,6 @@ class TokenService {
   Future<String?> getValidatedToken() async {
     final token = await _getToken();
     if (token == null) {
-      // Avisar que no hay token disponible
-      print('No hay token disponible');
       return null;
     }
     return token;

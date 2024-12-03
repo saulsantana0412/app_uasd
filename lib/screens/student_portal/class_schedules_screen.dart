@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:uasd_app/components/others/custom_circular_progress.dart';
 import 'package:uasd_app/services/schedule_service.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
@@ -12,15 +15,33 @@ class ClassSchedulesScreen extends StatefulWidget {
 class _ClassSchedulesScreenState extends State<ClassSchedulesScreen> {
 
   List<dynamic> _schedule = [];
+  bool _loading = true;
 
   Future <void> fetchNews() async{
     final data = await ScheduleService.fetchSchedules();
     if(data != null){
       _schedule = data;
       setState(() {
-        
+        if(mounted){
+          _loading = false;
+        }
+      });
+    }else{
+      Timer(const Duration(seconds: 2), (){
+        setState(() {
+          if(mounted){
+            _loading = false;
+          }
+        });
       });
     }
+    
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNews();
   }
 
   @override
@@ -37,14 +58,19 @@ class _ClassSchedulesScreenState extends State<ClassSchedulesScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Horarios", style: textTheme.titleMedium,),
+            if(_loading) 
+            const CustomCircularProgress(),
+            if(!_loading) 
+            Text("Aún no tienes horarios confirmados.", style: textTheme.bodyMedium,),
+            if(!_loading && _schedule.isNotEmpty)
             Expanded(
               child: ListView.builder(
                 itemCount: _schedule.length,
                 itemBuilder: (context, index) {
-                  return Column(
+                  return const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(_schedule[index]),
+                      // Text(_schedule[index]),
                       SizedBox(height: 20,)
                     ],
                   );

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/components/buttons/custom_icon_button_small.dart';
+import 'package:uasd_app/models/new.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
 
 class NewsCard extends StatelessWidget {
 
-  final String title;
-  final String url;
-  final String imageUrl;
-  final String date;
+  final New newArticle;
 
-  const NewsCard({super.key, required this.title, required this.url, required this.imageUrl, required this.date});
+  const NewsCard({super.key, required this.newArticle});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +17,14 @@ class NewsCard extends StatelessWidget {
     
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.darkGray.withOpacity(.05),
+            blurRadius: 10
+        )]
       ),
       child: Column(
         children: [
@@ -32,8 +35,10 @@ class NewsCard extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                Image.network(imageUrl, fit: BoxFit.cover),
-                CustomIconButtonSmall(url: url)
+                Image.network(newArticle.img, fit: BoxFit.cover),
+                CustomIconButtonSmall(
+                  url: newArticle.url
+                  )
               ],
             ),
           ),
@@ -42,9 +47,9 @@ class NewsCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(date, style: textTheme.bodySmall),
+                Text(newArticle.date, style: textTheme.bodySmall),
                 const SizedBox(height: 5),
-                Text(title, style: textTheme.labelLarge),
+                Text(newArticle.title, style: textTheme.labelLarge),
               ],
             ),
           ),
