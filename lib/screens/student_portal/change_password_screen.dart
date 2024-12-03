@@ -4,17 +4,18 @@ import 'package:uasd_app/components/inputs/text_input.dart';
 import 'package:uasd_app/services/auth_service.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
-  final _usernameCtrl = TextEditingController();
-  final _emailCtrl = TextEditingController();
+  final _currentPassCtrl = TextEditingController();
+  final _newPassCtrl = TextEditingController();
+  final _confirmPassCtrl = TextEditingController();
 
   final _formKey = GlobalKey<FormState>() ;
 
@@ -45,46 +46,56 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 Image.asset("assets/logo_uasd.png", width: double.infinity,),
                 const SizedBox(height: 30),
                 const SizedBox(height: 10),
+
                 TextInput(
-                  label: "Usuario", 
-                  controller: _usernameCtrl,
-                  icon: Icons.person,
+                  label: "Contraseña Actual", 
+                  controller: _currentPassCtrl,
+                  icon: Icons.lock,
+                  obscureText: true,
                 ),
                 const SizedBox(height: 30,),
                 TextInput(
-                  label: "Correo Electronico", 
-                  controller: _emailCtrl,
-                  icon: Icons.mail_outline_rounded,
+                  label: "Nueva Contraseña", 
+                  controller: _newPassCtrl,
+                  icon: Icons.lock,
+                  obscureText: true,
+                ),
+                const SizedBox(height: 30,),
+                TextInput(
+                  label: "Confirmar Contraseña", 
+                  controller: _confirmPassCtrl,
+                  icon: Icons.lock,
+                  obscureText: true,
                 ),
                 const SizedBox(height: 30,),
                 //  Login Button
                 SolidButton(
                   onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                    
-                        String username = _usernameCtrl.text.trim();
-                        String email = _emailCtrl.text.trim();
+                        String currentPassCtrl = _currentPassCtrl.text.trim();
+                        String newPass = _newPassCtrl.text.trim();
+                        String confirmPass = _confirmPassCtrl.text.trim();
+
+                        if(newPass == confirmPass){
                           
-                          bool? result = await AuthService.resetPassword(username, email);
-                          
-                          if (result == true) {
+                            bool? result = await AuthService.changePassword(currentPassCtrl, newPass);
                             
+                            if(result == true){
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                  content: Text("Su contraseña se ha reestablecido correctamente"),
+                                  content: Text("Su contraseña se ha cambiado correctamente"),
                                   backgroundColor: Colors.green,
                                 ),
                               );
                             Navigator.pop(context);
-
-                          } else {
+                          }else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Row(
                                   children: [
                                     Icon(Icons.error, color: Colors.white,),
                                     SizedBox(width: 10,),
-                                    Text("Usuario o correo incorrecto"),
+                                    Text("La contraseña actual es incorrecta"),
                                   ],
                                 ),
                               backgroundColor: Colors.red,
@@ -92,7 +103,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               padding: EdgeInsets.all(10),
                               ), 
                             );
-                          } 
+                          }      
+                          } else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Las contraseñas no coinciden"),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                        }
                       } else {
                         // Mensaje para formulario incompleto
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -103,7 +122,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         );
                       }
                     }, 
-                  text: "Restablecer Contraseña"
+                  text: "Cambiar Contraseña"
                 ),
               ],
             ),

@@ -27,7 +27,6 @@ class AcademicService {
           return responseData.map((json) => Task.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;
@@ -53,7 +52,6 @@ class AcademicService {
           return responseData.map((json) => Subject.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;
@@ -87,7 +85,6 @@ class AcademicService {
         }
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 
@@ -122,7 +119,6 @@ class AcademicService {
         }
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 
@@ -149,7 +145,6 @@ class AcademicService {
           return newsJson.map((json) => Subject.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;

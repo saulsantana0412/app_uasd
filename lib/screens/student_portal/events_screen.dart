@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/components/buttons/custom_icon_button.dart';
-import 'package:uasd_app/components/cards/text_card.dart';
-import 'package:uasd_app/screens/student_portal/map_screen.dart';
-import 'package:uasd_app/components/others/tag.dart';
+import 'package:uasd_app/components/cards/event_card.dart';
+import 'package:uasd_app/components/others/custom_circular_progress.dart';
 import 'package:uasd_app/models/event.dart';
 import 'package:uasd_app/services/content_service.dart';
 import 'package:uasd_app/utils/app_colors.dart';
@@ -17,13 +15,14 @@ class EventsScreen extends StatefulWidget {
 class _EventsScreenState extends State<EventsScreen> {
 
   List<Event> _events = [];
+  bool _loading = true;
 
   Future <void> fetchEvents() async{
     final data = await ContentService.fetchEvents();
     if(data != null && mounted){
       _events = data;
       setState(() {
-        
+        _loading = false;
       });
     }
   }
@@ -47,7 +46,12 @@ class _EventsScreenState extends State<EventsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Eventos", style: textTheme.headlineMedium,),
+            Text("Eventos", style: textTheme.titleMedium,),
+            const SizedBox(height: 10,),
+            if(_loading) const CustomCircularProgress(),
+            if (!_loading && _events.isEmpty)
+            Text("No hay eventos en calendario.", style: Theme.of(context).textTheme.bodyMedium),
+            if (!_loading && _events.isNotEmpty)
             Expanded(
               child: ListView.builder(
                 itemCount: _events.length,
@@ -55,22 +59,7 @@ class _EventsScreenState extends State<EventsScreen> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextCard(
-                        title: _events[index].titulo,
-                        subtitle: _events[index].descripcion,
-                        tag1: Tag(text: _events[index].fechaEvento.toString().split(".")[0]),
-                        tag2: Tag(text: _events[index].lugar),
-                        topIconButton: CustomIconButton(
-                          icon: Icons.map_outlined, 
-                          onPressed: (){ 
-                            Navigator.push(context, MaterialPageRoute(builder: (context) {
-                             return MapScreen(
-                                  coordenates: _events[index].coordenadas,); 
-                              }
-                            ));
-                          }
-                        ),
-                      ),
+                      EventCard(event: _events[index]),
                       const SizedBox(height: 20,)
                     ],
                   );

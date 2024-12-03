@@ -46,16 +46,16 @@ class _MainLandingScreenState extends State<MainLandingScreen> {
         title: const Text("UASD"),
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 5),
+            margin: const EdgeInsets.only(right: 5),
             child: IconButton(
               onPressed: (){
                 Navigator.of(context).push(CustomRouteTransition.slideTransition(const LoginScreen()));
               }, 
-              icon: Icon(Icons.login)
+              icon: const Icon(Icons.login)
             ),
           ),
         ],
-        actionsIconTheme: IconThemeData(
+        actionsIconTheme: const IconThemeData(
           color: AppColors.white
         ),
       ),

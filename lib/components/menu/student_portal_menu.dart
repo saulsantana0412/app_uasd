@@ -216,9 +216,9 @@ class _StudentPortalMenuState extends State<StudentPortalMenu> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             buildHeader(context),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             buildMenuItems(context),
           ],
         ),
@@ -239,82 +239,80 @@ class _StudentPortalMenuState extends State<StudentPortalMenu> {
   Widget buildMenuItems(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Container(
-      child: Wrap(
-        runSpacing: 16,
-        children: [
-          _buildMenuItem(
-            context,
-            icon: Icons.home_outlined,
-            title: 'Inicio',
-            targetScreen: 'HomeScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.newspaper_outlined,
-            title: 'Noticias',
-            targetScreen: 'NewsScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.calendar_month,
-            title: 'Horarios',
-            targetScreen: 'ClassSchedulesScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.check_box_outlined,
-            title: 'Preselección',
-            targetScreen: 'SubjectPreselectionScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.credit_card,
-            title: 'Pagos',
-            targetScreen: 'DebtsScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.mail_outlined,
-            title: 'Solicitudes',
-            targetScreen: 'RequestsScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.checklist,
-            title: 'Mis Tareas',
-            targetScreen: 'TasksScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.event,
-            title: 'Eventos',
-            targetScreen: 'EventsScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.video_library_outlined,
-            title: 'Videos',
-            targetScreen: 'VideosScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.info_outline_rounded,
-            title: 'Acerca de',
-            targetScreen: 'AboutUsScreen',
-            textTheme: textTheme,
-          ),
-        ],
-      ),
+    return Wrap(
+      runSpacing: 16,
+      children: [
+        _buildMenuItem(
+          context,
+          icon: Icons.home_outlined,
+          title: 'Inicio',
+          targetScreen: 'HomeScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.newspaper_outlined,
+          title: 'Noticias',
+          targetScreen: 'NewsScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.calendar_month,
+          title: 'Horarios',
+          targetScreen: 'ClassSchedulesScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.check_box_outlined,
+          title: 'Preselección',
+          targetScreen: 'SubjectPreselectionScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.credit_card,
+          title: 'Pagos',
+          targetScreen: 'DebtsScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.mail_outlined,
+          title: 'Solicitudes',
+          targetScreen: 'RequestsScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.checklist,
+          title: 'Mis Tareas',
+          targetScreen: 'TasksScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.event,
+          title: 'Eventos',
+          targetScreen: 'EventsScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.video_library_outlined,
+          title: 'Videos',
+          targetScreen: 'VideosScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.info_outline_rounded,
+          title: 'Acerca de',
+          targetScreen: 'AboutUsScreen',
+          textTheme: textTheme,
+        ),
+      ],
     );
   }
 

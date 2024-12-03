@@ -28,7 +28,6 @@ class RequestService {
         return newsJson.map((json) => Request.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;
@@ -54,7 +53,6 @@ class RequestService {
           return newsJson.map((json) => RequestType.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;
@@ -93,7 +91,6 @@ class RequestService {
         }
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 
@@ -123,14 +120,12 @@ class RequestService {
           final responseData = jsonDecode(response.body);
 
           if (responseData['success'] == true){
-            print(responseData["message"]);
             return true;
           } else {
             return false;
         }
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
 

@@ -162,9 +162,9 @@ class _LandingMenuState extends State<LandingMenu> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             buildHeader(context),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             buildMenuItems(context),
           ],
         ),
@@ -185,40 +185,38 @@ class _LandingMenuState extends State<LandingMenu> {
   Widget buildMenuItems(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Container(
-      child: Wrap(
-        runSpacing: 16,
-        children: [
-          _buildMenuItem(
-            context,
-            icon: Icons.home_outlined,
-            title: 'Inicio',
-            targetScreen: 'HomeScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.lens_blur_outlined,
-            title: 'Filosofia',
-            targetScreen: 'FilosofiaScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.account_tree_outlined,
-            title: 'Funciones',
-            targetScreen: 'FuncionesScreen',
-            textTheme: textTheme,
-          ),
-          _buildMenuItem(
-            context,
-            icon: Icons.school_outlined,
-            title: 'Facultades',
-            targetScreen: 'FacultadesScreen',
-            textTheme: textTheme,
-          ),
-        ],
-      ),
+    return Wrap(
+      runSpacing: 16,
+      children: [
+        _buildMenuItem(
+          context,
+          icon: Icons.home_outlined,
+          title: 'Inicio',
+          targetScreen: 'HomeScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.lens_blur_outlined,
+          title: 'Filosofia',
+          targetScreen: 'FilosofiaScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.account_tree_outlined,
+          title: 'Funciones',
+          targetScreen: 'FuncionesScreen',
+          textTheme: textTheme,
+        ),
+        _buildMenuItem(
+          context,
+          icon: Icons.school_outlined,
+          title: 'Facultades',
+          targetScreen: 'FacultadesScreen',
+          textTheme: textTheme,
+        ),
+      ],
     );
   }
 

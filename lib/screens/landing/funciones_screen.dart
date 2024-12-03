@@ -10,19 +10,15 @@ class FuncionesScreen extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("UASD"),
-      // ),
-      // drawer: const LandingMenu(currentScreen: 'FuncionesScreen',),
       body: SingleChildScrollView (
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Text(
               "Funciones", 
               style: textTheme.titleMedium,
               ),
-             SizedBox(height: 20),
+             const SizedBox(height: 20),
              Image.network(
                 'https://www.porlalinea.com.do/wp-content/uploads/2023/02/fachada-uasd-nota-240818-1024x768-1.jpg',
                 width: 500,

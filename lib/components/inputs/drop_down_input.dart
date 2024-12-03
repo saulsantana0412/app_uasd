@@ -11,7 +11,7 @@ class DropdownInput extends StatefulWidget {
   final IconData? icon;
   final bool enable;
 
-  const DropdownInput({
+  const DropdownInput({super.key, 
     required this.label,
     required this.items,
     required this.onChanged,
@@ -26,8 +26,14 @@ class DropdownInput extends StatefulWidget {
 }
 
 class _DropdownInputState extends State<DropdownInput> {
-  // Controla el foco del campo
-  
+  String? _selectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedValue = widget.value;
+  }
+
   String? _validateField(String? value) {
     if (value == null || value.isEmpty) {
       return "Favor seleccionar una opción";
@@ -43,7 +49,7 @@ class _DropdownInputState extends State<DropdownInput> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DropdownButtonFormField<String>(
-          value: widget.value,
+          value: _selectedValue,
           style: textTheme.bodyLarge,
           items: widget.items.map((RequestType item) {
             return DropdownMenuItem<String>(
@@ -51,7 +57,12 @@ class _DropdownInputState extends State<DropdownInput> {
               child: Text(item.descripcion), // Lo que se muestra en la lista
             );
           }).toList(),
-          onChanged: widget.enable ? widget.onChanged : null,
+          onChanged: widget.enable ? (value) {
+            setState(() {
+              _selectedValue = value;
+            });
+            widget.onChanged(value);
+          } : null,
           validator: widget.validator ?? _validateField,
           decoration: InputDecoration(
             prefixIcon: widget.icon == null ? null : Icon(widget.icon),

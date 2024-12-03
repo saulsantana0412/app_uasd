@@ -16,28 +16,26 @@ class DebtsTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: DataTable(
         decoration: const BoxDecoration(
-          color: AppColors.ligthBlue
+          color: AppColors.white
         ),
-        headingRowColor: WidgetStatePropertyAll(AppColors.blue),
+        headingRowColor: const WidgetStatePropertyAll(AppColors.ligthBlue),
         headingRowHeight: 40,
         dividerThickness: 0,
         dataTextStyle: textTheme.bodyMedium,
-        border: TableBorder(
+        border: const TableBorder(
           horizontalInside: BorderSide(
             width: 4,
-            color: AppColors.white
+            color: AppColors.backgroundColor
           )
         ),
         columns: const [
-          DataColumn(
-            label: Text("Monto")),
-          DataColumn(
-            label: Text("Estado")),
+          DataColumn( label: Text("Monto")),
+          DataColumn( label: Text("Estado")),
         ],
         rows: debts.map((debt) {
           return DataRow(
             cells: [
-              DataCell(Text(debt.monto.toString())),
+              DataCell(Text("\$ ${debt.monto.toString()}"), ),
               DataCell(Text(debt.pagada? "Pagado": "Pendiente")),
             ],
           );

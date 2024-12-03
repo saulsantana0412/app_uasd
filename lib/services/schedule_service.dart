@@ -20,14 +20,12 @@ class ScheduleService {
         });
 
         if (response.statusCode == 200){
-
           final List<dynamic> responseData = jsonDecode(response.body);
           return responseData;
+        }
+      } catch (e) {
+        return null;
       }
-    } catch (e) {
-      print('Excepción: $e');
-      return null;
-    }
     return null;
   }
 

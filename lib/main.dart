@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uasd_app/screens/landing/main_screen.dart';
+import 'package:uasd_app/screens/landing/main_landing_screen.dart';
 import 'package:uasd_app/utils/theme.dart';
 
 void main() => runApp(const MyApp());

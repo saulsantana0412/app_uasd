@@ -26,7 +26,6 @@ class DebtService {
           return responseData.map((json) => Debt.fromJson(json)).toList();
       }
     } catch (e) {
-      print('Excepción: $e');
       return null;
     }
     return null;
