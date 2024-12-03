@@ -10,9 +10,6 @@ class AboutUsScreen extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Acerca de"),
-      ),
       body: Container(
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
@@ -22,39 +19,32 @@ class AboutUsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "Acerca de los Desarrolladores",
-                style: textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
+              Text("Acerca de los Desarrolladores",
+                style: textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               _buildDeveloperCard(
                 textTheme,
                 name: "Eliezer Mejía",
                 matricula: "2022-2127",
                 bio:
                     "Estudiante apasionado por el desarrollo de software. Enfocado en crear soluciones tecnológicas prácticas e innovadoras.",
-                imagePath: 'assets/eliezer.jpg',
+                imagePath: 'assets/eliezer.png',
               ),
               const SizedBox(height: 20),
               _buildDeveloperCard(
                 textTheme,
-                name: "Saúl Santana",
+                name: "Saul Santana",
                 matricula: "2022-2097",
                 bio:
                     "Desarrollador interesado en Flutter y tecnologías modernas. Mi meta es mejorar continuamente y transformar ideas en realidad.",
-                imagePath: 'assets/eliezer.jpg',
+                imagePath: 'assets/saul.png',
               ),
               const SizedBox(height: 30),
               Text(
-                "Gracias por usar nuestra aplicación. ¡Esperamos que te sea útil y educativa!",
-                style: textTheme.bodyMedium?.copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: Colors.grey[600],
-                ),
+                "Gracias por usar nuestra aplicación. ¡Esperamos que te sea útil!",
+                style: textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
             ],
@@ -73,52 +63,57 @@ class AboutUsScreen extends StatelessWidget {
     required String imagePath,
   }) {
     return Container(
-      padding: const EdgeInsets.all(15),
+      // padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 5,
-            offset: const Offset(0, 5),
+            color: AppColors.blue.withOpacity(0.1),
+            blurRadius: 10,
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.asset(
-              imagePath,
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
+          Container(
+            padding: EdgeInsets.only(top: 20),
+            decoration: BoxDecoration(
+            color: AppColors.yellow,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              child: Image.asset(
+                imagePath,
+
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-          const SizedBox(height: 10),
-          Text(
-            name,
-            style: textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                Text( name,
+                  style: textTheme.titleLarge?.copyWith(color: AppColors.darkblue)
+                ),
+                Text(
+                  "$matricula",
+                  style: textTheme.labelMedium,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  bio,
+                  style: textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
-          Text(
-            "Matrícula: $matricula",
-            style: textTheme.bodyMedium?.copyWith(color: Colors.grey[700]),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            bio,
-            style: textTheme.bodySmall?.copyWith(
-              fontStyle: FontStyle.italic,
-              fontSize: 14,
-              color: Colors.grey[800],
-            ),
-            textAlign: TextAlign.center,
-          ),
+          
         ],
       ),
     );
