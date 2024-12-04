@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/components/buttons/solid_button.dart';
 import 'package:uasd_app/components/inputs/text_input.dart';
-import 'package:uasd_app/services/auth_service.dart';
-import 'package:uasd_app/utils/app_colors.dart';
+import 'package:uasd_app/components/modals/error_snackbar.dart'; 
+import 'package:uasd_app/components/modals/success_snackbar.dart'; 
+import 'package:uasd_app/services/auth_service.dart'; 
+import 'package:uasd_app/utils/app_colors.dart'; 
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -12,12 +14,13 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  // Controladores para los campos de entrada de texto.
+  final _currentPassCtrl = TextEditingController(); // Contraseña actual.
+  final _newPassCtrl = TextEditingController(); // Nueva contraseña.
+  final _confirmPassCtrl = TextEditingController(); // Confirmación de contraseña.
 
-  final _currentPassCtrl = TextEditingController();
-  final _newPassCtrl = TextEditingController();
-  final _confirmPassCtrl = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>() ;
+  // Clave global para el formulario, usada para validar los campos.
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -26,103 +29,88 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme; // Obtiene el tema de texto actual.
 
-  TextTheme textTheme = Theme.of(context).textTheme;
-    
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.white, // Fondo blanco para la pantalla.
       appBar: AppBar(
-        title: Text("Restablecer Contraseña", style: textTheme.titleMedium?.copyWith(color: AppColors.white),),
+        // Barra de título de la pantalla.
+        title: Text(
+          "Restablecer Contraseña",
+          style: textTheme.titleMedium?.copyWith(color: AppColors.white), // Estilo del texto.
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30), // Espaciado uniforme alrededor del contenido.
           child: Form(
-            key: _formKey,
+            key: _formKey, // Asigna la clave global al formulario.
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center, // Centra los elementos verticalmente.
+              crossAxisAlignment: CrossAxisAlignment.center, // Centra los elementos horizontalmente.
               children: [
-                Image.asset("assets/logo_uasd.png", width: double.infinity,),
+                // Logo de la UASD.
+                Image.asset("assets/logo_uasd.png", width: double.infinity),
                 const SizedBox(height: 30),
-                const SizedBox(height: 10),
 
+                // Campo para la contraseña actual.
                 TextInput(
-                  label: "Contraseña Actual", 
+                  label: "Contraseña Actual",
                   controller: _currentPassCtrl,
-                  icon: Icons.lock,
-                  obscureText: true,
+                  icon: Icons.lock, // Icono de candado.
+                  obscureText: true, // Oculta el texto para mayor seguridad.
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 30),
+
+                // Campo para la nueva contraseña.
                 TextInput(
-                  label: "Nueva Contraseña", 
+                  label: "Nueva Contraseña",
                   controller: _newPassCtrl,
                   icon: Icons.lock,
                   obscureText: true,
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 30),
+
+                // Campo para confirmar la nueva contraseña.
                 TextInput(
-                  label: "Confirmar Contraseña", 
+                  label: "Confirmar Contraseña",
                   controller: _confirmPassCtrl,
                   icon: Icons.lock,
                   obscureText: true,
                 ),
-                const SizedBox(height: 30,),
-                //  Login Button
+                const SizedBox(height: 30),
+
+                // Botón para cambiar la contraseña.
                 SolidButton(
                   onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        String currentPassCtrl = _currentPassCtrl.text.trim();
-                        String newPass = _newPassCtrl.text.trim();
-                        String confirmPass = _confirmPassCtrl.text.trim();
+                    if (_formKey.currentState!.validate()) {
+                      // Si los campos son válidos, se procesan los datos.
+                      String currentPassCtrl = _currentPassCtrl.text.trim();
+                      String newPass = _newPassCtrl.text.trim();
+                      String confirmPass = _confirmPassCtrl.text.trim();
 
-                        if(newPass == confirmPass){
-                          
-                            bool? result = await AuthService.changePassword(currentPassCtrl, newPass);
-                            
-                            if(result == true){
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text("Su contraseña se ha cambiado correctamente"),
-                                  backgroundColor: Colors.green,
-                                ),
-                              );
-                            Navigator.pop(context);
-                          }else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Row(
-                                  children: [
-                                    Icon(Icons.error, color: Colors.white,),
-                                    SizedBox(width: 10,),
-                                    Text("La contraseña actual es incorrecta"),
-                                  ],
-                                ),
-                              backgroundColor: Colors.red,
-                              showCloseIcon: true,
-                              padding: EdgeInsets.all(10),
-                              ), 
-                            );
-                          }      
-                          } else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Las contraseñas no coinciden"),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
+                      if (newPass == confirmPass) {
+                        // Si las contraseñas coinciden.
+                        bool? result = await AuthService.changePassword(currentPassCtrl, newPass);
+                        
+                        if (result == true) {
+                          // Si el cambio de contraseña es exitoso.
+                          SuccessSnackbar.show(context, "Su contraseña se ha cambiado correctamente.");
+                          Navigator.pop(context); // Vuelve a la pantalla anterior.
+                        } else {
+                          // Si la contraseña actual es incorrecta.
+                          ErrorSnackbar.show(context, "La contraseña actual es incorrecta.");
                         }
                       } else {
-                        // Mensaje para formulario incompleto
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Formulario incompleto"),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
+                        // Si las contraseñas no coinciden.
+                        ErrorSnackbar.show(context, "Las contraseñas no coinciden.");
                       }
-                    }, 
-                  text: "Cambiar Contraseña"
+                    } else {
+                      // Si el formulario está incompleto.
+                      ErrorSnackbar.show(context, "Formulario incompleto.");
+                    }
+                  },
+                  text: "Cambiar Contraseña", // Texto del botón.
                 ),
               ],
             ),

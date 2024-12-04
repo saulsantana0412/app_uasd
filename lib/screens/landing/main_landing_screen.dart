@@ -16,8 +16,10 @@ class MainLandingScreen extends StatefulWidget {
 }
 
 class _MainLandingScreenState extends State<MainLandingScreen> {
+  // Variable para rastrear la pantalla actual.
   String _currentScreen = 'HomeScreen';
 
+  // Método para obtener la pantalla correspondiente según el nombre.
   Widget _getScreen(String screen) {
     switch (screen) {
       case 'FilosofiaScreen':
@@ -32,11 +34,12 @@ class _MainLandingScreenState extends State<MainLandingScreen> {
     }
   }
 
+  // Método para manejar la selección de elementos del menú.
   void _onMenuItemSelected(String screen) {
     setState(() {
       _currentScreen = screen;
     });
-    Navigator.of(context).pop(); // Cierra el Drawer
+    Navigator.of(context).pop(); // Cierra el Drawer.
   }
 
   @override
@@ -45,25 +48,28 @@ class _MainLandingScreenState extends State<MainLandingScreen> {
       appBar: AppBar(
         title: const Text("UASD"),
         actions: [
+          // Botón de acceso al inicio de sesión.
           Container(
             margin: const EdgeInsets.only(right: 5),
             child: IconButton(
-              onPressed: (){
-                Navigator.of(context).push(CustomRouteTransition.slideTransition(const LoginScreen()));
-              }, 
-              icon: const Icon(Icons.login)
+              onPressed: () {
+                Navigator.of(context).push(
+                  CustomRouteTransition.slideTransition(const LoginScreen()),
+                );
+              },
+              icon: const Icon(Icons.login),
             ),
           ),
         ],
         actionsIconTheme: const IconThemeData(
-          color: AppColors.white
+          color: AppColors.white, // Define el color de los íconos de acción.
         ),
       ),
       drawer: LandingMenu(
-        currentScreen: _currentScreen,
-        onMenuItemSelected: _onMenuItemSelected,
+        currentScreen: _currentScreen, // Pantalla actual.
+        onMenuItemSelected: _onMenuItemSelected, // Callback al seleccionar un elemento del menú.
       ),
-      body: _getScreen(_currentScreen),
+      body: _getScreen(_currentScreen), // Muestra la pantalla actual.
     );
   }
 }

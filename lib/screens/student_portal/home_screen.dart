@@ -10,8 +10,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
+    TextTheme textTheme = Theme.of(context).textTheme; // Estilo de texto de la aplicación.
 
+    // Método para navegar a la pantalla correspondiente según la opción seleccionada.
     void navigateToScreen(String screen) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -23,24 +24,27 @@ class HomeScreen extends StatelessWidget {
       );
     }
 
-    return SingleChildScrollView(
+    return SingleChildScrollView( // Permite que el contenido se desplace si no cabe en la pantalla.
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
-          color: AppColors.backgroundColor,
+          color: AppColors.backgroundColor, // Fondo de la pantalla.
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Bienvenida al estudiante.
             Text(
               "¡Bienvenido, $name!",
-              style: textTheme.titleLarge!.copyWith(fontSize: 30),
+              style: textTheme.titleLarge!.copyWith(fontSize: 30), // Estilo del texto de bienvenida.
             ),
             Text(
               "Nos alegramos de tenerte de vuelta 😊",
-              style: textTheme.bodyLarge,
+              style: textTheme.bodyLarge, // Estilo del mensaje de bienvenida.
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 20), // Espaciado entre los elementos.
+            
+            // Primer fila de opciones.
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -48,18 +52,20 @@ class HomeScreen extends StatelessWidget {
                   icon: Icons.newspaper_outlined,
                   title: "Noticias",
                   color: AppColors.blue,
-                  onTap: () => navigateToScreen('NewsScreen'),
+                  onTap: () => navigateToScreen('NewsScreen'), // Acción al seleccionar la opción.
                 ),
                 const SizedBox(width: 40),
                 OptionContainer(
                   icon: Icons.calendar_month,
                   title: "Horarios",
                   color: AppColors.blue,
-                  onTap: () => navigateToScreen('ClassSchedulesScreen'),
+                  onTap: () => navigateToScreen('ClassSchedulesScreen'), // Acción al seleccionar la opción.
                 ),
               ],
             ),
             const SizedBox(height: 30),
+            
+            // Segunda fila de opciones.
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -67,18 +73,20 @@ class HomeScreen extends StatelessWidget {
                   icon: Icons.check_box_outlined,
                   title: "Preselección",
                   color: AppColors.ligthBlue,
-                  onTap: () => navigateToScreen('SubjectPreselectionScreen'),
+                  onTap: () => navigateToScreen('SubjectPreselectionScreen'), // Acción al seleccionar la opción.
                 ),
                 const SizedBox(width: 30),
                 OptionContainer(
                   icon: Icons.credit_card,
                   title: "Pagos",
                   color: AppColors.ligthBlue,
-                  onTap: () => navigateToScreen('DebtsScreen'),
+                  onTap: () => navigateToScreen('DebtsScreen'), // Acción al seleccionar la opción.
                 ),
               ],
             ),
             const SizedBox(height: 30),
+            
+            // Tercera fila de opciones.
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -86,18 +94,20 @@ class HomeScreen extends StatelessWidget {
                   icon: Icons.mail_outlined,
                   title: "Solicitudes",
                   color: AppColors.white,
-                  onTap: () => navigateToScreen('RequestsScreen'),
+                  onTap: () => navigateToScreen('RequestsScreen'), // Acción al seleccionar la opción.
                 ),
                 const SizedBox(width: 30),
                 OptionContainer(
                   icon: Icons.checklist,
                   title: "Mis Tareas",
                   color: AppColors.white,
-                  onTap: () => navigateToScreen('TasksScreen'),
+                  onTap: () => navigateToScreen('TasksScreen'), // Acción al seleccionar la opción.
                 ),
               ],
             ),
             const SizedBox(height: 30),
+            
+            // Cuarta fila de opciones.
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -105,18 +115,20 @@ class HomeScreen extends StatelessWidget {
                   icon: Icons.event,
                   title: "Eventos",
                   color: AppColors.ligthBlue,
-                  onTap: () => navigateToScreen('EventsScreen'),
+                  onTap: () => navigateToScreen('EventsScreen'), // Acción al seleccionar la opción.
                 ),
                 const SizedBox(width: 30),
                 OptionContainer(
                   icon: Icons.video_library_outlined,
                   title: "Videos",
                   color: AppColors.ligthBlue,
-                  onTap: () => navigateToScreen('VideosScreen'),
+                  onTap: () => navigateToScreen('VideosScreen'), // Acción al seleccionar la opción.
                 ),
               ],
             ),
             const SizedBox(height: 30),
+            
+            // Quinta fila de opciones (opción única).
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -124,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                   icon: Icons.info_outline_rounded,
                   title: "Acerca de",
                   color: AppColors.blue,
-                  onTap: () => navigateToScreen('AboutUsScreen'),
+                  onTap: () => navigateToScreen('AboutUsScreen'), // Acción al seleccionar la opción.
                 ),
               ],
             ),
@@ -135,11 +147,12 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// Widget reutilizable para las opciones del menú.
 class OptionContainer extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final Color color;
-  final VoidCallback onTap;
+  final IconData icon; // Icono de la opción.
+  final String title; // Título de la opción.
+  final Color color; // Color de fondo de la opción.
+  final VoidCallback onTap; // Acción al hacer clic en la opción.
 
   const OptionContainer({
     super.key,
@@ -151,23 +164,23 @@ class OptionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
+    TextTheme textTheme = Theme.of(context).textTheme; // Estilo de texto de la aplicación.
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap, // Detecta el toque en la opción y ejecuta la acción correspondiente.
       child: Container(
-        width: MediaQuery.of(context).size.width * .35,
-        height: MediaQuery.of(context).size.width * .35,
+        width: MediaQuery.of(context).size.width * .35, // Tamaño de la opción (35% del ancho de la pantalla).
+        height: MediaQuery.of(context).size.width * .35, // Tamaño de la opción (35% del ancho de la pantalla).
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(10),
+          color: color, // Color de fondo de la opción.
+          borderRadius: BorderRadius.circular(10), // Bordes redondeados.
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center, // Centra el contenido dentro de la opción.
           children: [
-            Icon(icon, size: 30, color: AppColors.darkGray),
-            Text(title, style: textTheme.titleSmall),
+            Icon(icon, size: 30, color: AppColors.darkGray), // Icono de la opción.
+            Text(title, style: textTheme.titleSmall), // Título de la opción.
           ],
         ),
       ),

@@ -33,8 +33,11 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
         key: _formKey,
         child: Column(
           children: [
+            // Título de la pantalla
             Text("Nueva Solicitud", style: textTheme.titleMedium),
             const SizedBox(height: 20),
+
+            // Dropdown para seleccionar el tipo de solicitud
             DropdownInput(
               label: 'Tipo de Solicitud',
               items: widget.requestTypes,
@@ -46,6 +49,8 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
               },
             ),
             const SizedBox(height: 30),
+
+            // Campo de texto para la descripción
             TextInput(
               label: 'Descripcion',
               controller: _descriptionController,
@@ -53,16 +58,19 @@ class _NewRequestScreenState extends State<NewRequestScreen> {
               maxLines: 4,
             ),
             const SizedBox(height: 20),
+
+            // Botón para enviar la solicitud
             SolidButton(
               text: "Enviar Solicitud",
               onPressed: () async {
                 if (_formKey.currentState!.validate() && _requestTypeCode != null && _descriptionController.text.isNotEmpty) {
-
+                  // Llamar al servicio para crear la solicitud
                   bool? result = await RequestService.createRequest(_requestTypeCode!, _descriptionController.text.trim());
 
+                  // Comprobar el resultado de la creación de la solicitud
                   if(result == true){
-                    Navigator.pop(context, true);
-                  }else{
+                    Navigator.pop(context, true); // Cerrar la pantalla si es exitosa
+                  } else {
                     ErrorModal.show(context, "Ya tienes una solicitud pendiente de este tipo.");
                   }
                 }

@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.3.1
   google_maps_flutter: ^2.10.0
   youtube_player_flutter: ^9.1.1
+  flutter_launcher_icons: ^0.14.1
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +56,10 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+# flutter_icons: 
+#   android: true 
+#   ios: true 
+#   image_path: "assets/app_icon.png"
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -67,7 +71,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/eliezer.jpg
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -86,6 +89,7 @@ flutter:
       - asset: lib/fonts/Roboto-Regular.ttf 
       - asset: lib/fonts/Roboto-Bold.ttf
       - asset: lib/fonts/Roboto-Light.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

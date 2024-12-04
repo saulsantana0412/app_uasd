@@ -1,211 +1,28 @@
-// import 'package:flutter/material.dart';
-// import 'package:uasd_app/screens/student_portal/about_us_screen.dart';
-// import 'package:uasd_app/screens/student_portal/class_schedules_screen.dart';
-// import 'package:uasd_app/screens/student_portal/debts_screen.dart';
-// import 'package:uasd_app/screens/student_portal/events_screen.dart';
-// import 'package:uasd_app/screens/student_portal/home_screen.dart';
-// import 'package:uasd_app/screens/student_portal/news_screen.dart';
-// import 'package:uasd_app/screens/student_portal/requests_screen.dart';
-// import 'package:uasd_app/screens/student_portal/subject_preselection_screen.dart';
-// import 'package:uasd_app/screens/student_portal/tasks_screen.dart';
-// import 'package:uasd_app/screens/student_portal/videos_screen.dart';
-// import 'package:uasd_app/utils/app_colors.dart';
-
-// class StudentPortalMenu extends StatefulWidget {
-//   final String currentScreen; // Para identificar la pantalla actual
-
-//   const StudentPortalMenu({super.key, required this.currentScreen});
-
-//   @override
-//   State<StudentPortalMenu> createState() => _StudentPortalMenuState();
-// }
-
-// class _StudentPortalMenuState extends State<StudentPortalMenu> {
-//   String _selectedOption = '';
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _selectedOption = widget.currentScreen; // Inicializar con la pantalla actual
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Drawer(
-//       backgroundColor: AppColors.white,
-//       child: SingleChildScrollView(
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.stretch,
-//           children: [
-//             SizedBox(height: 30,),
-//             buildHeader(context),
-//             SizedBox(height: 10,),
-//             buildMenuItems(context),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget buildHeader(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-//       decoration: const BoxDecoration(
-//         color: AppColors.white
-//       ),
-//       child: Image.asset("assets/logo_uasd.png", width: double.infinity,)
-//     );
-//   }
-
-//   Widget buildMenuItems(BuildContext context) {
-//     TextTheme textTheme = Theme.of(context).textTheme;
-
-//     return Container(
-//       child: Wrap(
-//         runSpacing: 16,
-//         children: [
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.home_outlined,
-//             title: 'Inicio',
-//             targetScreen: 'HomeScreen',
-//             destination: const HomeScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.newspaper_outlined,
-//             title: 'Noticias',
-//             targetScreen: 'NewsScreen',
-//             destination: const NewsScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.calendar_month,
-//             title: 'Horarios',
-//             targetScreen: 'ClassSchedulesScreen',
-//             destination: const ClassSchedulesScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.check_box_outlined,
-//             title: 'Preselección',
-//             targetScreen: 'SubjectPreselectionScreen',
-//             destination: const SubjectPreselectionScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.credit_card,
-//             title: 'Pagos',
-//             targetScreen: 'DebtsScreen',
-//             destination: const DebtsScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.mail_outlined,
-//             title: 'Solicitudes',
-//             targetScreen: 'RequestsScreen',
-//             destination: const RequestsScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.checklist,
-//             title: 'Mis Tareas',
-//             targetScreen: 'TasksScreen',
-//             destination: const TasksScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.event,
-//             title: 'Eventos',
-//             targetScreen: 'EventsScreen',
-//             destination: const EventsScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.video_library_outlined,
-//             title: 'Videos',
-//             targetScreen: 'VideosScreen',
-//             destination: const VideosScreen(),
-//             textTheme: textTheme,
-//           ),
-//           _buildMenuItem(
-//             context,
-//             icon: Icons.info_outline_rounded,
-//             title: 'Acerca de',
-//             targetScreen: 'AboutUsScreen',
-//             destination: const AboutUsScreen(),
-//             textTheme: textTheme,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildMenuItem(
-//     BuildContext context, {
-//     required IconData icon,
-//     required String title,
-//     required String targetScreen,
-//     required Widget destination,
-//     required TextTheme textTheme,
-//   }) {
-//     final bool isSelected = _selectedOption == targetScreen;
-
-//     return Container(
-//       padding: const EdgeInsets.symmetric(horizontal: 10),
-//       decoration: BoxDecoration(
-//         color: isSelected ? AppColors.darkblue : null,
-//       ),
-//       child: ListTile(
-//         leading: Icon(icon, color: isSelected ? AppColors.white : AppColors.darkblue),
-//         title: Text(
-//           title,
-//           style: textTheme.bodyLarge?.copyWith(
-//             color: isSelected ? AppColors.white : AppColors.darkblue,
-//             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-//           ),
-//         ),
-//         tileColor: isSelected ? AppColors.darkblue : null,
-//         onTap: () {
-//           setState(() {
-//             _selectedOption = targetScreen;
-//           });
-//           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => destination));
-//         },
-//       ),
-//     );
-//   }
-// }
-
-
 import 'package:flutter/material.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
+/// Widget que representa un menú de navegación lateral para el portal estudiantil.
 class StudentPortalMenu extends StatefulWidget {
   final Function(String) onMenuItemSelected; // Callback para manejar la selección del menú
   final String currentScreen; // Para identificar la pantalla actual
 
-  const StudentPortalMenu({super.key, required this.onMenuItemSelected, required this.currentScreen});
+  const StudentPortalMenu({
+    super.key, 
+    required this.onMenuItemSelected, 
+    required this.currentScreen
+  });
 
   @override
   State<StudentPortalMenu> createState() => _StudentPortalMenuState();
 }
 
 class _StudentPortalMenuState extends State<StudentPortalMenu> {
-  String _selectedOption = '';
+  String _selectedOption = ''; // Opción seleccionada en el menú
 
   @override
   void initState() {
     super.initState();
-    _selectedOption = widget.currentScreen; // Inicializar con la pantalla actual
+    _selectedOption = widget.currentScreen; // Inicializa con la pantalla actual
   }
 
   @override
@@ -217,25 +34,27 @@ class _StudentPortalMenuState extends State<StudentPortalMenu> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 30,),
-            buildHeader(context),
+            buildHeader(context), // Construye el encabezado con el logo
             const SizedBox(height: 10,),
-            buildMenuItems(context),
+            buildMenuItems(context), // Construye los ítems del menú
           ],
         ),
       ),
     );
   }
 
+  /// Construye el encabezado con el logo de la universidad.
   Widget buildHeader(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       decoration: const BoxDecoration(
         color: AppColors.white
       ),
-      child: Image.asset("assets/logo_uasd.png", width: double.infinity,)
+      child: Image.asset("assets/logo_uasd.png", width: double.infinity,) // Logo de la UASD
     );
   }
 
+  /// Construye los ítems del menú de navegación del portal estudiantil.
   Widget buildMenuItems(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
 
@@ -316,6 +135,7 @@ class _StudentPortalMenuState extends State<StudentPortalMenu> {
     );
   }
 
+  /// Construye un ítem de menú individual para el portal estudiantil.
   Widget _buildMenuItem(
     BuildContext context, {
     required IconData icon,
@@ -323,28 +143,28 @@ class _StudentPortalMenuState extends State<StudentPortalMenu> {
     required String targetScreen,
     required TextTheme textTheme,
   }) {
-    final bool isSelected = _selectedOption == targetScreen;
+    final bool isSelected = _selectedOption == targetScreen; // Verifica si este ítem está seleccionado
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.darkblue : null,
+        color: isSelected ? AppColors.darkblue : null, // Resalta el ítem seleccionado
       ),
       child: ListTile(
-        leading: Icon(icon, color: isSelected ? AppColors.white : AppColors.darkblue),
+        leading: Icon(icon, color: isSelected ? AppColors.white : AppColors.darkblue), 
         title: Text(
           title,
           style: textTheme.bodyLarge?.copyWith(
             color: isSelected ? AppColors.white : AppColors.darkblue,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal, // Resalta el texto si está seleccionado
           ),
         ),
-        tileColor: isSelected ? AppColors.darkblue : null,
+        tileColor: isSelected ? AppColors.darkblue : null, // Resalta el fondo si está seleccionado
         onTap: () {
           setState(() {
-            _selectedOption = targetScreen;
+            _selectedOption = targetScreen; // Actualiza la opción seleccionada
           });
-          widget.onMenuItemSelected(targetScreen); // Llama al callback
+          widget.onMenuItemSelected(targetScreen); // Llama al callback con la pantalla seleccionada
         },
       ),
     );

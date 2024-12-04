@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uasd_app/utils/app_colors.dart';
 
-
+/// Widget personalizado para mostrar un indicador de progreso circular.
 class CustomCircularProgress extends StatelessWidget {
   const CustomCircularProgress({
     super.key,
@@ -12,11 +12,11 @@ class CustomCircularProgress extends StatelessWidget {
     return const Center(
       child: Column(
         children: [
-          SizedBox(height: 20,),
+          SizedBox(height: 20,), 
           CircularProgressIndicator(
-            color: AppColors.blue,
+            color: AppColors.blue, // Color personalizado del indicador de progreso
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 20,), 
         ],
       ),
     );

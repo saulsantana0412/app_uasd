@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="uasd_app"
+        android:label=" UASD APP"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

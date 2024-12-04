@@ -23,24 +23,6 @@ class AppTextStyles {
     color: AppColors.darkGray,
   );
 
-  // static TextStyle displaySmall = const TextStyle(
-  //   fontSize: AppTextSizes.displaySmall,
-  //   fontWeight: FontWeight.normal,
-  //   color: AppColors.darkGray,
-  // );
-
-  // static TextStyle displayMedium = const TextStyle(
-  //   fontSize: AppTextSizes.displayMedium,
-  //   fontWeight: FontWeight.normal,
-  //   color: AppColors.darkGray,
-  // );
-
-  // static TextStyle displayLarge = const TextStyle(
-  //   fontSize: AppTextSizes.displayLarge,
-  //   fontWeight: FontWeight.normal,
-  //   color: AppColors.darkGray,
-  // );
-
   static TextStyle titleSmall = const TextStyle(
     fontSize: AppTextSizes.titleSmall,
     fontWeight: FontWeight.bold,
